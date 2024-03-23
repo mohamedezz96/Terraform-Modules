@@ -30,7 +30,7 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSVPCResourceController" {
 
 
 # Enabling IAM Roles for ServiceAccounts
-/*
+
 data "tls_certificate" "eks-cluster-tls" {
   url = aws_eks_cluster.eks-cluster.identity[0].oidc[0].issuer
 }
@@ -63,4 +63,4 @@ resource "aws_iam_role" "eks-SA-role" {
   assume_role_policy = data.aws_iam_policy_document.eks-cluster-SA-policy.json
   name               = "eks-cluster-SA-role"
 }
-*/
+
