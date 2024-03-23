@@ -5,8 +5,7 @@ variable "cluster_name" {
 variable "cluster_version" {
   type = string
 }
-/*
 variable "serviceaccount_role_name" {
   type = string
 }
-*/
+
