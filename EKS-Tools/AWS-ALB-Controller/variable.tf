@@ -1,10 +1,3 @@
-variable "cluster_endpoint" {
-  type = string
-}
-
-variable "cluster_ca_cert" {
-  type = string
-}
 variable "version" {
   type = string
   default = "1.7.2"
