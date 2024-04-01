@@ -2,7 +2,7 @@ resource "helm_release" "aws_alb_controller" {
   name = "aws-alb-controller"
   chart      = "aws-load-balancer-controller"
   repository = "https://aws.github.io/eks-charts/"
-  version    = var.version
+  version    = var.aws_alb_controller_version
   namespace        = "aws-alb-controller"
   create_namespace = true
 
