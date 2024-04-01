@@ -1,4 +1,4 @@
-variable "version" {
+variable "aws_alb_controller_version" {
   type = string
   default = "1.7.2"
 }
