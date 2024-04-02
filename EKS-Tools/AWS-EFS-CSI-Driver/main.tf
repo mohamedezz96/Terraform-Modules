@@ -4,12 +4,11 @@ data "aws_efs_file_system" "efs" {
   }
 }
 
-resource "helm_release" "efs_provisioner" {
-  name = "efs-provisioner"
-
-  repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver/"
-  chart      = "aws-efs-csi-driver"
-  version    = "2.5.3"
+resource "helm_release" "aws_efs_csi_driver" {
+  name             = "aws-efs-csi-driver"
+  repository       = "https://kubernetes-sigs.github.io/aws-efs-csi-driver/"
+  chart            = "aws-efs-csi-driver"
+  version          = var.aws-efs-csi-driver-version
 
   namespace        = "efs-provisioner"
   create_namespace = true
