@@ -1,6 +1,6 @@
 data "aws_efs_file_system" "efs" {
   tags = {
-    Name = "${var.project_name}-efs"
+    Name = var.efs-name
   }
 }
 
