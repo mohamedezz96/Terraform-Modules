@@ -30,6 +30,6 @@ resource "helm_release" "aws_efs_csi_driver" {
   }
 
   depends_on = [
-    aws_iam_role_policy.default
+    aws_iam_role_policy.aws_efs_csi_driver_iam_role
   ]
 }
