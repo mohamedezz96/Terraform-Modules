@@ -17,16 +17,11 @@ module "ebs_csi_driver" {
 
 The following input variables are supported:
 
-|Name|Description|Type|Default|Required|
-|------|-------------|------|---------|:--------:|
-|`aws_ebs_csi_driver_version`|The version of the AWS EBS CSI driver Helm chart to install.|`string`|`N/A`|Yes|
-|`eks_issuer`|The OIDC issuer URL for the EKS cluster.|`string`|`N/A`|Yes|
-|`values_file`|The path to the values.yaml file for the AWS EBS CSI driver Helm chart.|`string`|`N/A`|Yes|
-
-| Header 1    | Header 2    | Header 3    |
-|-------------|-------------|-------------|
-| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
-| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
+| Name                       | Description                                                             | Type   | Default | Required |
+|----------------------------|-------------------------------------------------------------------------|--------|---------|----------|
+| eks_issuer                 | The OIDC issuer URL for the EKS cluster.                                | string | N/A     | yes      |
+| aws_ebs_csi_driver_version | The version of the AWS EBS CSI driver Helm chart to install.            | string | N/A     | yes      |
+| values_file                | The path to the values.yaml file for the AWS EBS CSI driver Helm chart. | string | N/A     | yes      |
 
 
 Replace `example_variable` with the name of your input variable, and provide a brief description of its purpose. Similarly, replace `Description of the example variable.` with a more detailed explanation of what the variable does.
