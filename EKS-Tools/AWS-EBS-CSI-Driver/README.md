@@ -23,10 +23,11 @@ The following input variables are supported:
 |`eks_issuer`|The OIDC issuer URL for the EKS cluster.|`string`|`N/A`|Yes|
 |`values_file`|The path to the values.yaml file for the AWS EBS CSI driver Helm chart.|`string`|`N/A`|Yes|
 
-| Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| Header 1    | Header 2    | Header 3    |
+|-------------|-------------|-------------|
 | Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
 | Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
+
 
 Replace `example_variable` with the name of your input variable, and provide a brief description of its purpose. Similarly, replace `Description of the example variable.` with a more detailed explanation of what the variable does.
 
