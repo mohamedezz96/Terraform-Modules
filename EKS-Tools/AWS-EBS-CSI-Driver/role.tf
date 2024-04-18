@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "aws_ebs_csi_driver_policy" {
     condition {
       test     = "StringEquals"
       variable = "${replace(var.eks_issuer, "https://", "")}:sub"
-      values   = ["system:serviceaccount:aws-ebs-csi-driver:${var.aws_ebs_csi_driver_controller_sa_name}", "system:serviceaccount:aws-ebs-csi-driver:${var.aws_ebs_csi_driver_node_sa_name}"]
+      values   = ["system:serviceaccount:aws-ebs-csi-driver:aws-ebs-csi-driver-controller-sa", "system:serviceaccount:aws-ebs-csi-driver:aws-ebs-csi-driver-node-sa"]
     }
   }
 }
