@@ -10,12 +10,12 @@ resource "helm_release" "aws_ebs_csi_driver" {
 
   set {
     name  = "controller.serviceAccount.name"
-    value = var.aws_ebs_csi_driver_controller_sa_name
+    value = "aws-ebs-csi-driver-controller-sa"
   }
 
   set {
     name  = "node.serviceAccount.name"
-    value = var.aws_ebs_csi_driver_node_sa_name
+    value = "aws-ebs-csi-driver-node-sa"
   }
 
   set {
