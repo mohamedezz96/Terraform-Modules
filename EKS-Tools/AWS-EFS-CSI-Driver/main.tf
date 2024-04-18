@@ -6,8 +6,7 @@ resource "helm_release" "aws_efs_csi_driver" {
   namespace        = "aws-efs-csi-driver"
   create_namespace = true
   wait             = false
-
-  values = [file("${var.values_file}")]
+  values = ["${file(var.values_file)}"]
 
   set {
     name  = "node.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
@@ -21,15 +20,12 @@ resource "helm_release" "aws_efs_csi_driver" {
 
   set {
     name  = "controller.serviceAccount.name"
-    value = var.aws_efs_controller_sa_name
+    value = "aws-efs-csi-driver-controller-sa"
   }
 
   set {
     name  = "node.serviceAccount.name"
-    value = var.aws_efs_node_sa_name
+    value = "aws-efs-csi-driver-node-sa"
   }
 
-  depends_on = [
-    aws_iam_policy_attachment.efs_csi_driver_policy_attachment
-  ]
 }
