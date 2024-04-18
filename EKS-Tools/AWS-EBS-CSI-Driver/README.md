@@ -23,6 +23,9 @@ The following input variables are supported:
 | aws_ebs_csi_driver_version | The version of the AWS EBS CSI driver Helm chart to install.            | string | N/A     | yes      |
 | values_file                | The path to the values.yaml file for the AWS EBS CSI driver Helm chart. | string | N/A     | yes      |
 
+| Attempt | #1    | #2    |
+| :---:   | :---: | :---: |
+| Seconds | 301   | 283   |
 
 Replace `example_variable` with the name of your input variable, and provide a brief description of its purpose. Similarly, replace `Description of the example variable.` with a more detailed explanation of what the variable does.
 
