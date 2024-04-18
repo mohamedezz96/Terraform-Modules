@@ -5,7 +5,7 @@ This Terraform module deploys an AWS EFS CSI (Container Storage Interface) Drive
 ## Usage
 
 ```hcl
-module "efs_csi_driver" {
+module "aws_efs_csi_driver" {
   source = "github.com/mohamedezz96/Terraform-Modules//EKS-Tools/AWS-EFS-CSI-Driver"
 
   # Specify any required input variables here
