@@ -8,7 +8,7 @@ resource "aws_iam_policy" "aws_ebs_csi_driver_policy" {
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
-  policy = file("./policy.json")
+  policy = file("${path.module}/policy.json")
 }
 
 data "aws_iam_policy_document" "aws_ebs_csi_driver_policy" {
