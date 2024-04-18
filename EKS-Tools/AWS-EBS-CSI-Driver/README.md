@@ -12,8 +12,8 @@ module "ebs_csi_driver" {
 
   # Specify any required input variables here
 }
-
-## Inputs
+```
+## inputs
 
 The following input variables are supported:
 
