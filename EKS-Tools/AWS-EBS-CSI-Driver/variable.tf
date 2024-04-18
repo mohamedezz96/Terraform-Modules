@@ -10,7 +10,7 @@ variable "aws_ebs_csi_driver_version" {
   
 }
 
-variable "values_yaml" {
+variable "values_file" {
   type        = string
   description = "The path to the values.yaml file for the AWS EBS CSI driver Helm chart."
   
