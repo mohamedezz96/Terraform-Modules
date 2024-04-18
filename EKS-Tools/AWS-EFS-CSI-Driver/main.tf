@@ -6,7 +6,7 @@ resource "helm_release" "aws_efs_csi_driver" {
   namespace        = "aws-efs-csi-driver"
   create_namespace = true
   wait             = false
-  values = ["${file(var.values_file)}"]
+  values           = ["${file(var.values_file)}"]
 
   set {
     name  = "node.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
