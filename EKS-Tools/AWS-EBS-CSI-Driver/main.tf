@@ -6,7 +6,7 @@ resource "helm_release" "aws_ebs_csi_driver" {
   namespace        = "aws-ebs-csi-driver"
   create_namespace = true
   wait             = false
-  values           = ["${file(var.values_yaml)}"]
+  values           = ["${file(var.values_file)}"]
 
   set {
     name  = "controller.serviceAccount.name"
