@@ -41,5 +41,5 @@ data "aws_iam_policy_document" "aws_ebs_csi_driver_policy" {
 resource "aws_iam_role" "aws_ebs_csi_driver_role" {
   name                = "aws-ebs-csi-driver-role"
   assume_role_policy  = data.aws_iam_policy_document.aws_ebs_csi_driver_policy.json
-  managed_policy_arns = aws_iam_policy.aws_ebs_csi_driver_policy.arn
+  managed_policy_arns = [aws_iam_policy.aws_ebs_csi_driver_policy.arn]
 }
