@@ -9,8 +9,14 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
     condition {
       test     = "StringEquals"
+      variable = "${replace(var.eks_issuer, "https://", "")}:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
       variable = "${replace(var.eks_issuer, "https://", "")}:sub"
-      values   = ["system:serviceaccount:aws-efs-csi-driver:${var.aws_efs_controller_sa_name}", "system:serviceaccount:aws-efs-csi-driver:${var.aws_efs_node_sa_name}","sts.amazonaws.com"]
+      values   = ["system:serviceaccount:aws-efs-csi-driver:aws-efs-csi-driver-controller-sa", "system:serviceaccount:aws-efs-csi-driver:aws-efs-csi-driver-node-sa"]
     }
     principals {
       identifiers = [data.aws_iam_openid_connect_provider.eks_oidc.arn]
@@ -21,10 +27,10 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
 resource "aws_iam_role" "aws_efs_csi_driver_iam_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
-  name               = var.aws_efs_csi_driver_role_name
+  name               = "aws-efs-csi-driver-role"
 }
 
-resource "aws_iam_policy_attachment" "efs_csi_driver_policy_attachment" {
+resource "aws_iam_policy_attachment" "aws_efs_csi_driver_policy_attachment" {
   name       = "AmazonEFSCSIDriverPolicyAttachment"
   roles      = [aws_iam_role.aws_efs_csi_driver_iam_role.name]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
