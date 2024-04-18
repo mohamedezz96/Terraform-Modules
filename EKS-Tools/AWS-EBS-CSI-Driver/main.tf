@@ -1,12 +1,12 @@
 resource "helm_release" "aws_ebs_csi_driver" {
-  name       = "aws-ebs-csi-driver"
-  repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver/"
-  chart      = "aws-ebs-csi-driver"
-  version    = var.aws_ebs_csi_driver_version
+  name             = "aws-ebs-csi-driver"
+  repository       = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver/"
+  chart            = "aws-ebs-csi-driver"
+  version          = var.aws_ebs_csi_driver_version
   namespace        = "aws-ebs-csi-driver"
   create_namespace = true
   wait             = false
-  values = ["${file(var.values_yaml)}"]
+  values           = ["${file(var.values_yaml)}"]
 
   set {
     name  = "controller.serviceAccount.name"
