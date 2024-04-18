@@ -17,7 +17,7 @@ module "ebs_csi_driver" {
 
 The following input variables are supported:
 
-| Name | Description | Type | Default | Required |
+|Name|Description|Type|Default|Required|
 |------|-------------|------|---------|:--------:|
 |`aws_ebs_csi_driver_version`|The version of the AWS EBS CSI driver Helm chart to install.|`string`|`N/A`|Yes|
 |`eks_issuer`|The OIDC issuer URL for the EKS cluster.|`string`|`N/A`|Yes|
