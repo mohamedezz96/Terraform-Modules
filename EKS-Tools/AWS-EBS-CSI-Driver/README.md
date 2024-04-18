@@ -13,3 +13,22 @@ module "ebs_csi_driver" {
   # Specify any required input variables here
 }
 
+## Inputs
+
+The following input variables are supported:
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| `aws_ebs_csi_driver_version` | The version of the AWS EBS CSI driver Helm chart to install. | `string` | `N/A` | Yes |
+| `eks_issuer` | The OIDC issuer URL for the EKS cluster. | `string` | `N/A` | Yes |
+| `values_file` | The path to the values.yaml file for the AWS EBS CSI driver Helm chart. | `stting` | `N/A` | Yes |
+
+Replace `example_variable` with the name of your input variable, and provide a brief description of its purpose. Similarly, replace `Description of the example variable.` with a more detailed explanation of what the variable does.
+
+For the `Type` column, specify the data type of the variable, such as `string`, `number`, `bool`, or `list`.
+
+In the `Default` column, provide the default value of the variable, if any. If the variable is required and has no default value, you can indicate it as `"N/A"` or leave it empty.
+
+In the `Required` column, specify whether the variable is required (`Yes`) or optional (`No`). If a variable is required, users must provide a value for it in their Terraform configuration.
+
+Include as many input variables as necessary for your module, following the same format.
