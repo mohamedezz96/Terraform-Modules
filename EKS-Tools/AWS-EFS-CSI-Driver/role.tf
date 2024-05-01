@@ -8,13 +8,13 @@ data "aws_iam_policy_document" "assume_role_policy" {
     effect  = "Allow"
 
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       variable = "${replace(var.eks_issuer, "https://", "")}:aud"
       values   = ["sts.amazonaws.com"]
     }
 
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       variable = "${replace(var.eks_issuer, "https://", "")}:sub"
       values   = ["system:serviceaccount:aws-efs-csi-driver:aws-efs-csi-driver-controller-sa", "system:serviceaccount:aws-efs-csi-driver:aws-efs-csi-driver-node-sa"]
     }
