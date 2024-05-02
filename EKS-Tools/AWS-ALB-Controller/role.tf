@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
     condition {
       test     = "StringEquals"
       variable = "${replace(var.eks_issuer, "https://", "")}:sub"
-      values   = ["system:serviceaccount:aws-alb-controller:${var.alb_sa_name}"]
+      values   = ["system:serviceaccount:aws-alb-controller:aws-alb-controller-sa"]
     }
 
     principals {
