@@ -19,7 +19,7 @@ resource "helm_release" "aws_alb_controller" {
 
   set {
     name  = "serviceAccount.name"
-    value = var.alb_sa_name
+    value = "aws-alb-controller-sa"
   }
 
   depends_on = [
