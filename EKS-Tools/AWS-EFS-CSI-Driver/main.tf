@@ -27,5 +27,6 @@ resource "helm_release" "aws_efs_csi_driver" {
     name  = "node.serviceAccount.name"
     value = "aws-efs-csi-driver-node-sa"
   }
+  depends_on = [ aws_efs_file_system.eks_efs ]
 
 }
