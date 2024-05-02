@@ -20,13 +20,13 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
-resource "aws_iam_role" "default" {
+resource "aws_iam_role" "aws_alb_controller_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
-  name               = var.alb_role_name
+  name               = aws-alb-controller-role
 }
 
-resource "aws_iam_role_policy" "default" {
-  name   = var.alb_policy_name
+resource "aws_iam_role_policy" "aws_alb_controller_policy" {
+  name   = aws-alb-controller-policy
   role   = aws_iam_role.default.id
   policy = file("${path.module}/policy.json")
 }
