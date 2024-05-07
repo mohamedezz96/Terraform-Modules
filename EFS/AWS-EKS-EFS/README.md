@@ -16,10 +16,15 @@ Before using this module, ensure you have the following:
 ```hcl
 module "eks_efs" {
   source         = "github.com/mohamedezz96/Terraform-Modules//EFS/AWS-EKS-EFS"
-  eks_cluster_id = module.eks_cluster.id
-  subnets        = module.eks_cluster.subnet_ids
+  eks_cluster_vpc_id          = xxxxx
+  eks_workernode_subnets_id   = [xxxxx,xxxxx,xxxx]
+  eks_cluster_name            = xxxxxx
 }
 ```
 
 ## Inputs
-
+| Name                        | Description                                         | Type           | Default | Required |
+|-----------------------------|-----------------------------------------------------|----------------|---------|----------|
+| `eks_cluster_vpc_id`        | EKS Cluster VPC ID                                  | `string`       | `N/A`   | yes      |
+| `eks_cluster_name`          | EKS Cluster Name                                    | `string`       | `N/A`   | yes      |
+| `eks_workernode_subnets_id` | The Subnets ID where the EKS WorkerNode is Deployed | `list(string)` | `N/A`   | yes      |
