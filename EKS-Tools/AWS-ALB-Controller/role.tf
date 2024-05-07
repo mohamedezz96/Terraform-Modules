@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
 resource "aws_iam_role" "aws_alb_controller_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
-  name               = aws-alb-controller-role
+  name               = "aws-alb-controller-role"
 }
 
 resource "aws_iam_role_policy" "aws_alb_controller_policy" {
