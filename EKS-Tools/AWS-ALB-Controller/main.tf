@@ -10,7 +10,7 @@ resource "helm_release" "aws_alb_controller" {
   
   set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = aws_iam_role.default.arn
+    value = aws_iam_role.aws_alb_controller_role.arn
   }
   set {
     name  = "clusterName"
