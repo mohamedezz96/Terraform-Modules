@@ -27,6 +27,6 @@ resource "aws_iam_role" "aws_alb_controller_role" {
 
 resource "aws_iam_role_policy" "aws_alb_controller_policy" {
   name   = aws-alb-controller-policy
-  role   = aws_iam_role.default.id
+  role   = aws_iam_role.aws_alb_controller_role.id
   policy = file("${path.module}/policy.json")
 }
