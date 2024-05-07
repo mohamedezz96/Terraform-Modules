@@ -23,6 +23,6 @@ resource "helm_release" "aws_alb_controller" {
   }
 
   depends_on = [
-    aws_iam_role_policy.default
+    aws_iam_role_policy.aws_alb_controller_policy
   ]
 }
