@@ -101,6 +101,7 @@ resource "aws_route_table" "private-subnet-route-table" {
       network_interface_id       = ""
       transit_gateway_id         = ""
       vpc_endpoint_id            = ""
+      core_network_arn           = ""
       vpc_peering_connection_id  = ""
     },
   ]
@@ -127,6 +128,7 @@ resource "aws_route_table" "public-subnet-route-table" {
       network_interface_id       = ""
       transit_gateway_id         = ""
       vpc_endpoint_id            = ""
+      core_network_arn           = ""
       vpc_peering_connection_id  = ""
     },
   ]
