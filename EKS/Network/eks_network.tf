@@ -1,6 +1,8 @@
+locals {
+  first_public_subnet_az = keys(var.public_subnets_cidr_block)[0]
+}
 resource "aws_vpc" "eks_vpc" {
-  cidr_block = "10.0.0.0/16"
-
+  cidr_block = var.vpc_cidr_block
   tags = {
     Name = "eks-vpc"
   }
@@ -14,91 +16,70 @@ resource "aws_internet_gateway" "eks_vpc_igw" {
   }
 }
 
-resource "aws_subnet" "private-us-east-1a" {
+resource "aws_subnet" "eks_vpc_private_subnet" {
+  for_each = var.private_subnets_cidr_block
   vpc_id            = aws_vpc.eks_vpc.id
-  cidr_block        = "10.0.0.0/19" # 10.0.0.0 - 10.0.31.255 (10.0.0.0 & 10.0.0.1 & 10.0.0.2 & 10.0.0.4 & 10.0.31.255 reserved) 
-  availability_zone = "us-east-1a"
+
+  cidr_block        = each.value
+  availability_zone = each.key 
 
   tags = {
-    "Name"                            = "eks-private-subnet-us-east-1a"
+    "Name"                            = "eks-private-subnet-${each.key}"
     "kubernetes.io/role/internal-elb" = "1"
     "kubernetes.io/cluster/demo"      = "owned"
   }
 }
 
-resource "aws_subnet" "private-us-east-1b" {
-  vpc_id            = aws_vpc.eks_vpc.id
-  cidr_block        = "10.0.32.0/19" # 10.0.32.0 - 10.0.63.255 (10.0.32.0 & 10.0.32.1 & 10.0.32.2 & 10.0.32.3 & 10.0.63.255 reserved)
-  availability_zone = "us-east-1b"
 
-  tags = {
-    "Name"                            = "eks-private-subnet-us-east-1b"
-    "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/demo"      = "owned"
-  }
-}
-
-resource "aws_subnet" "public-us-east-1a" {
+resource "aws_subnet" "eks_vpc_public_subnet" {
+  for_each = var.public_subnets_cidr_block
   vpc_id                  = aws_vpc.eks_vpc.id
-  cidr_block              = "10.0.64.0/19" # 10.0.64.0 - 10.0.95.255 (10.0.64.0 & 10.0.64.1 & 10.0.64.2 & 10.0.64.3 & 10.0.95.255 reserved)
-  availability_zone       = "us-east-1a"
+  cidr_block              = each.value
+  availability_zone       = each.key
   map_public_ip_on_launch = true
 
   tags = {
-    "Name"                       = "eks-public-subnet-us-east-1a"
-    "kubernetes.io/role/elb"     = "1"
-    "kubernetes.io/cluster/demo" = "owned"
-  }
-}
-
-resource "aws_subnet" "public-us-east-1b" {
-  vpc_id                  = aws_vpc.eks_vpc.id
-  cidr_block              = "10.0.96.0/19" # 10.0.96.0 - 	10.0.127.255 (10.0.96.0 & 10.0.96.1 & 10.0.96.2 & 10.0.96.3 & 10.0.127.255 reserved)
-  availability_zone       = "us-east-1b"
-  map_public_ip_on_launch = true
-
-  tags = {
-    "Name"                       = "eks-public-subnet-us-east-1b"
+    "Name"                       = "eks-public-subnet-${each.key}"
     "kubernetes.io/role/elb"     = "1"
     "kubernetes.io/cluster/demo" = "owned"
   }
 }
 
 
-resource "aws_eip" "eip_nat_gateway" {
+resource "aws_eip" "eks_vpc_eip_nat_gateway" {
   domain = "vpc"
 
   tags = {
-    Name = "eip-nat-gateway"
+    Name = "eks-vpc-eip-nat-gateway"
   }
 }
 
-resource "aws_nat_gateway" "eks-nat-gateway" {
-  allocation_id = aws_eip.eip_nat_gateway.id
-  subnet_id     = aws_subnet.public-us-east-1a.id
+resource "aws_nat_gateway" "eks_vpc_nat_gateway" {
+  allocation_id = aws_eip.eks_vpc_eip_nat_gateway.id
+  subnet_id     = aws_subnet.eks_vpc_public_subnet[local.first_public_subnet_az].id
 
   tags = {
-    Name = "eks-nat-gateway"
+    Name = "eks-vpc-nat-gateway"
   }
 
   depends_on = [aws_internet_gateway.eks_vpc_igw]
 }
 
-resource "aws_route_table" "private-subnet-route-table" {
+resource "aws_route_table" "eks_vpc_private_subnet_route_table" {
   vpc_id = aws_vpc.eks_vpc.id
 
   route {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.eks-nat-gateway.id
+      nat_gateway_id             = aws_nat_gateway.eks_vpc_nat_gateway.id
     }
   
 
   tags = {
-    Name = "eks-private-subnet-route-table"
+    Name = "eks-vpc-private-subnet-route-table"
   }
 }
 
-resource "aws_route_table" "public-subnet-route-table" {
+resource "aws_route_table" "eks_vpc_public_subnet_route_table" {
   vpc_id = aws_vpc.eks_vpc.id
 
   route {
@@ -107,27 +88,21 @@ resource "aws_route_table" "public-subnet-route-table" {
     }
 
   tags = {
-    Name = "eks-public-subnet-route-table"
+    Name = "eks-vpc-public-subnet-route-table"
   }
 }
 
-resource "aws_route_table_association" "private-us-east-1a" {
-  subnet_id      = aws_subnet.private-us-east-1a.id
-  route_table_id = aws_route_table.private-subnet-route-table.id
+resource "aws_route_table_association" "eks_vpc_private_subnet_association" {
+  for_each       = aws_subnet.eks_vpc_private_subnet
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.eks_vpc_private_subnet_route_table.id
 }
 
-resource "aws_route_table_association" "private-us-east-1b" {
-  subnet_id      = aws_subnet.private-us-east-1b.id
-  route_table_id = aws_route_table.private-subnet-route-table.id
+resource "aws_route_table_association" "eks_vpc_public_subnet_association" {
+  for_each       = aws_subnet.eks_vpc_public_subnet
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.eks_vpc_public_subnet_route_table.id
 }
 
-resource "aws_route_table_association" "public-us-east-1a" {
-  subnet_id      = aws_subnet.public-us-east-1a.id
-  route_table_id = aws_route_table.public-subnet-route-table.id
-}
 
-resource "aws_route_table_association" "public-us-east-1b" {
-  subnet_id      = aws_subnet.public-us-east-1b.id
-  route_table_id = aws_route_table.public-subnet-route-table.id
-}
 
