@@ -52,7 +52,7 @@ resource "aws_subnet" "public-us-east-1a" {
 }
 
 resource "aws_subnet" "public-us-east-1b" {
-  vpc_id                  = aws_vpc.main.id
+  vpc_id                  = aws_vpc.eks_vpc.id
   cidr_block              = "10.0.96.0/19" # 10.0.96.0 - 	10.0.127.255 (10.0.96.0 & 10.0.96.1 & 10.0.96.2 & 10.0.96.3 & 10.0.127.255 reserved)
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
@@ -111,7 +111,7 @@ resource "aws_route_table" "private-subnet-route-table" {
 }
 
 resource "aws_route_table" "public-subnet-route-table" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.eks_vpc.id
 
   route = [
     {
