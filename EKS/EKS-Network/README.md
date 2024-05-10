@@ -13,7 +13,7 @@ This Terraform module creates a network infrastructure for an Amazon Elastic Kub
 ```hcl
 module "eks_network" {
   source              = "github.com/mohamedezz96/Terraform-Modules//EKS/EKS-Network"
-  region              = "us-west-2"
+
   vpc_cidr            = "10.0.0.0/16"
   public_subnets_cidr = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnets_cidr = ["10.0.3.0/24", "10.0.4.0/24"]
