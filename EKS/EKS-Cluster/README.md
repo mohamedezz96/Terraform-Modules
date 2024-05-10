@@ -27,3 +27,9 @@ module "eks-cluster" {
 | cluster_version          | The Kubernetes version for the cluster.           | `string`      |        N/A   |   yes    |
 | subnet_ids             | The EKS VPC subnets ID private & public.                        | `list`      |    N/A       |   yes    |
 
+
+## Outputs
+
+| Name                        | Description                                        | Type          | 
+|-----------------------------|----------------------------------------------------|---------------|
+| cluster_name                | The name of the EKS cluster.                       | `string`      |   
