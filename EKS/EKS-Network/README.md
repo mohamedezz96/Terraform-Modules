@@ -14,12 +14,12 @@ This Terraform module creates a network infrastructure for an Amazon Elastic Kub
 module "eks_network" {
   source              = "github.com/mohamedezz96/Terraform-Modules//EKS/EKS-Network"
 
-  vpc_cidr            = "10.0.0.0/16"
-  public_subnets_cidr = ["10.0.1.0/24", "10.0.2.0/24"]
-  private_subnets_cidr = ["10.0.3.0/24", "10.0.4.0/24"]
-  tags = {
-    Name = "eks-network"
-    Environment = "production"
-  }
 }
 ```
+## Inputs
+
+| Name                         | Description                                                                        | Type     | Default                                                    | Required |
+|------------------------------|------------------------------------------------------------------------------------|----------|------------------------------------------------------------|----------|
+| `vpc_cidr_block`             | CIDR BlOCK for EKS CLuster VPC                                                     | `string` | `"10.0.0.0/16"`                                            | No       |
+| `private_subnets_cidr_block` | CIDR BLOCK for EKS private subnets and the AZ in which this subnet will be created | `map`    | `us-east-1a = "10.0.0.0/19"  us-east-1b = "10.0.32.0/19"`  | No       |
+| `public_subnets_cidr_block`  | CIDR BLOCK for EKS public subnets and the AZ in which this subnet will be created  | `map`    | `us-east-1a = "10.0.64.0/19"  us-east-1b = "10.0.96.0/19"` | No       |
