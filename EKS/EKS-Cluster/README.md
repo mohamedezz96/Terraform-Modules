@@ -18,3 +18,16 @@ module "eks-cluster" {
   subnet_ids = module.eks-network.eks_vpc_subnet_ids
 }
 ```
+
+## Inputs
+
+| Name                        | Description                                        | Type          | Default   | Required |
+|-----------------------------|----------------------------------------------------|---------------|-----------|:--------:|
+| cluster_name                | The name of the EKS cluster.                       | `string`      |           |   yes    |
+| kubernetes_version          | The Kubernetes version for the cluster.           | `string`      |           |   yes    |
+| node_group_name             | The name of the node group.                        | `string`      |           |   yes    |
+| node_instance_type          | The instance type for the nodes.                   | `string`      |           |   yes    |
+| node_group_desired_capacity | The desired number of nodes in the node group.     | `number`      |           |   yes    |
+| node_group_min_size         | The minimum number of nodes in the node group.     | `number`      |           |   yes    |
+| node_group_max_size         | The maximum number of nodes in the node group.     | `number`      |           |   yes    |
+| tags                        | A map of tags to apply to all resources created by the module. | `map(string)` | `{}` |   no     |
