@@ -22,7 +22,7 @@ variable "node_group_ami_type" {
 variable "node_group_instance_type" {
   description = "Instance type for the EKS node group"
   type = list(string)
-  default = "t3.small"
+  default = ["t3.small"]
 }
 
 variable "node_group_capacity_type" {
