@@ -21,5 +21,5 @@ module "eks_network" {
 | Name                         | Description                                                                        | Type     | Default                                                    | Required |
 |------------------------------|------------------------------------------------------------------------------------|----------|------------------------------------------------------------|----------|
 | `vpc_cidr_block`             | CIDR BlOCK for EKS CLuster VPC                                                     | `string` | `"10.0.0.0/16"`                                            | No       |
-| `private_subnets_cidr_block` | CIDR BLOCK for EKS private subnets and the AZ in which this subnet will be created | `map`    | `us-east-1a = "10.0.0.0/19"  us-east-1b = "10.0.32.0/19"`  | No       |
+| `private_subnets_cidr_block` | CIDR BLOCK for EKS private subnets and the AZ in which this subnet will be created | `map`    | `us-east-1a = "10.0.0.0/19"   us-east-1b = "10.0.32.0/19"`  | No       |
 | `public_subnets_cidr_block`  | CIDR BLOCK for EKS public subnets and the AZ in which this subnet will be created  | `map`    | `us-east-1a = "10.0.64.0/19"  us-east-1b = "10.0.96.0/19"` | No       |
