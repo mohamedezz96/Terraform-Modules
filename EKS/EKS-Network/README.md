@@ -1,4 +1,4 @@
-# Terraform Modules: EKS Network
+# Terraform Module: EKS Network
 
 This Terraform module creates a network infrastructure for an Amazon Elastic Kubernetes Service (EKS) cluster on AWS.
 
