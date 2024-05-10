@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "eks_cluster_assume_role_policy" {
 
 resource "aws_iam_role" "eks_cluster_role" {
   name               = "eks-cluster-role"
-  assume_role_policy = data.aws_iam_policy_document.eks_assume_role_policy.json
+  assume_role_policy = data.aws_iam_policy_document.eks_cluster_assume_role_policy.json
 }
 
 resource "aws_iam_role_policy_attachment" "eks_cluster_role_attachment" {
