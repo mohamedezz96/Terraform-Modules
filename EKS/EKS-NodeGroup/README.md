@@ -36,6 +36,7 @@ module "eks-node-group" {
 | eks_vpc_private_subnet_ids  | The EKS VPC private subnets IDs.                   | `list`        |    N/A    |  yes     |
 | node_group_ami_type         | The Type of Node Group nodes AMI                   | `string`      | `BOTTLEROCKET_x86_64`|   No    |
 | node_group_instance_type    | The instance type for the Node Group nodes         | `list`        | `t3.medium`          |   No    |
+| node_group_capacity_type    | The Capacity Type of Node Group nodes              | `string`      | `ON_DEMAND`          |   No    |
 | node_group_desired_capacity | The desired number of nodes in the node group.     | `number`      |   `2`        |   No    |
 | node_group_min_size         | The minimum number of nodes in the node group.     | `number`      |   `2`        |   No    |
 | node_group_max_size         | The maximum number of nodes in the node group.     | `number`      |    `3`       |   No    |
