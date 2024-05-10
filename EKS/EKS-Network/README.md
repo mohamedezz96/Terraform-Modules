@@ -38,4 +38,11 @@ module "eks-network" {
 | `public_subnets_cidr_block`  | CIDR BLOCK for EKS public subnets and the AZ in which this subnet will be created  | `map`    | `us-east-1a = "10.0.64.0/19"  us-east-1b = "10.0.96.0/19"` | No       |
 
 
+## Outputs
+
+| Name                         | Description                                            | Type   |
+|------------------------------|--------------------------------------------------------|--------|
+| `eks_vpc_private_subnet_ids` | List of Subnets ID of EKS VPC private subnets          | `list` |
+| `eks_vpc_public_subnet_ids`  | List of Subnets ID of EKS VPC public subnets           | `list` |
+| `eks_vpc_subnet_ids`         | List of subntes ID of EKS VPC private & public subnets | `list` |
 
