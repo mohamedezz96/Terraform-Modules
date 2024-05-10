@@ -4,18 +4,18 @@ resource "aws_eks_node_group" "eks_node_group" {
   node_role_arn   = aws_iam_role.eks_node_group_role.arn
   subnet_ids      = var.eks_vpc_private_subnet_ids
 
-  ami_type = "BOTTLEROCKET_x86_64"
-  instance_types = ["t3.medium"]
-  capacity_type  = "ON_DEMAND"
+  ami_type = var.node_group_ami_type
+  instance_types = var.node_group_instance_type
+  capacity_type  = var.node_group_capacity_type
 
   scaling_config {
-    desired_size = 3
-    max_size     = 5
-    min_size     = 3
+    desired_size = var.node_group_desired_size
+    max_size     = var.node_group_max_size
+    min_size     = var.node_group_min_size
   }
 
   update_config {
-    max_unavailable = 1
+    max_unavailable = var.node_group_max_unavailable
   }
 
   depends_on = [
