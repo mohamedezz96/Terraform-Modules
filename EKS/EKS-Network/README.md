@@ -38,3 +38,6 @@ module "eks-network" {
 | `public_subnets_cidr_block`  | CIDR BLOCK for EKS public subnets and the AZ in which this subnet will be created  | `map`    | `us-east-1a = "10.0.64.0/19"  us-east-1b = "10.0.96.0/19"` | No       |
 
   **Note:**
+  1- Minimum prefix can be used with vpc_cidr_block `16`
+  2- At Least 2 private subnets in 2 different AZs.
+  3- At Least 2 public subnets in 2 different AZs.
