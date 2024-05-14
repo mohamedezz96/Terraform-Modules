@@ -10,3 +10,8 @@ variable "cluster_autoscaler_version" {
   default = "9.36.0"
   
 }
+
+variable "values_file" {
+  type        = string
+  description = "The path to the values.yaml file for the AWS EFS CSI driver Helm chart."
+}
