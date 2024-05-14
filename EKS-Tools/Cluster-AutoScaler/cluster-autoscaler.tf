@@ -4,10 +4,16 @@ resource "helm_release" "cluster_autoscaler" {
     chart      = "cluster-autoscaler"
     version    = var.cluster_autoscaler_version
     values           = ["${file(var.values_file)}"]
-    
+
     namespace  = "cluster-autoscaler"
     create_namespace = true
 
+
+    set {
+        name  = "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+        value = aws_iam_role.eks_cluster_autoscaler_role.arn
+    
+    }
     
     set {
         name  = "autoDiscovery.clusterName"
