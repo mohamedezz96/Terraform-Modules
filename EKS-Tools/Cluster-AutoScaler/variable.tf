@@ -11,6 +11,11 @@ variable "cluster_autoscaler_version" {
   
 }
 
+variable "eks_issuer" {
+  type        = string
+  description = "The OIDC issuer URL for the EKS cluster."
+}
+
 variable "values_file" {
   type        = string
   description = "The path to the values.yaml file for the AWS EFS CSI driver Helm chart."

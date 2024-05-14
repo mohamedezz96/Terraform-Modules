@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "eks_cluster_autoscaler_assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${replace(data.aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer, "https://", "")}:sub"
+      variable = "${replace(var.eks_issuer, "https://", "")}:sub"
       values   = ["system:serviceaccount:cluster-autoscaler:cluster-autoscaler"]
     }
 
