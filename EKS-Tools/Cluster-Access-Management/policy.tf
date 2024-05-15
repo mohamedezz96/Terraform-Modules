@@ -46,6 +46,9 @@ resource "aws_iam_role_policy_attachment" "eks_admin_policy_attachment" {
 }
 
 resource "null_resource" "configmap-edit" {
+  triggers = {
+    timestamp = timestamp()
+  }
 
   provisioner "local-exec" {
     command = <<-EOT
