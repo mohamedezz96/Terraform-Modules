@@ -7,4 +7,9 @@ resource "kubernetes_config_map" "aws-auth" {
     name      = "aws-auth"
     namespace = "kube-system"
   }
+
+  lifecycle {
+    ignore_changes = ["data"]
+    prevent_destroy = false
+  }
 }
