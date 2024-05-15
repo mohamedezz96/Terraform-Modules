@@ -6,7 +6,6 @@
 
 - groups:
   - system:masters
-  rolearn: 
   username: eks-admin
 
 
