@@ -1,4 +1,4 @@
-# Terraform EKS Addons Module
+# Terraform Module: EKS Addons
 
 This Terraform module simplifies the process of deploying common Kubernetes addons on an Amazon EKS cluster.
 
@@ -8,8 +8,6 @@ This Terraform module simplifies the process of deploying common Kubernetes addo
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [Inputs](#inputs)
-- [Outputs](#outputs)
-- [License](#license)
 
 ## Features
 
@@ -33,3 +31,11 @@ module "eks_addons" {
   cluster_name = "my-eks-cluster"
 }
 ```
+
+## Inputs
+
+| Name          | Description                               | Type   | Default | Required |
+|---------------|-------------------------------------------|--------|---------|----------|
+| cluster_name  | The name of the EKS cluster to apply the addons to. | string |   N/A      | yes      |
+
+
