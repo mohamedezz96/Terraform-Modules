@@ -45,16 +45,16 @@ resource "aws_iam_role_policy_attachment" "eks_admin_policy_attachment" {
   policy_arn = aws_iam_policy.eks_admin_policy.arn
 }
 
-# resource "null_resource" "configmap-edit" {
+resource "null_resource" "configmap-edit" {
 
-#   provisioner "local-exec" {
-#     command = <<-EOT
-#       #!/bin/bash
-#       rolearn="${aws_iam_role.eks_admin_role.arn}"  
-#       file="./maproles.txt"  
-#       sed -i "/username: eks-admin/{x;p;x;s/rolearn:.*/rolearn: $rolearn/}" "$file"
-#     EOT
-#   }
-# }
+  provisioner "local-exec" {
+    command = <<-EOT
+      #!/bin/bash
+      rolearn="${aws_iam_role.eks_admin_role.arn}"  
+      file="./maproles.txt"  
+      sed -i "/username: eks-admin/{x;p;x;s/rolearn:.*/rolearn: $rolearn/}" "$file"
+    EOT
+  }
+}
 
 
