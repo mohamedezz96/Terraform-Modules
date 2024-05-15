@@ -28,7 +28,7 @@ Before using this module, ensure you have the following prerequisites:
 ```hcl
 module "eks_addons" {
   source  = "mohamedezz96/EKS-Addons/aws"
-  cluster_name = "my-eks-cluster"
+  cluster_name = module.eks-cluster.cluster_name
 }
 ```
 
