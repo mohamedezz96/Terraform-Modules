@@ -1,0 +1,13 @@
+- groups:
+  - system:bootstrappers
+  - system:nodes
+  rolearn: arn:aws:iam::267983699101:role/eks-node-group-role
+  username: system:node:{{EC2PrivateDNSName}}
+
+- groups:
+  - system:masters
+rolearn: 
+username: eks-admin
+
+
+
