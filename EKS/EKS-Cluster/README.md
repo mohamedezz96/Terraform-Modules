@@ -27,7 +27,9 @@ module "eks-cluster" {
 | cluster_version          | The Kubernetes version for the cluster.           | `string`      |        N/A   |   yes    |
 | subnet_ids             | The EKS VPC subnets ID private & public.                        | `list`      |    N/A       |   yes    |
 
-
+  ### Note:
+  - At least 2 public & 2 private subnets in 2 different AZs.
+  
 ## Outputs
 
 | Name                        | Description                                        | Type          | 
