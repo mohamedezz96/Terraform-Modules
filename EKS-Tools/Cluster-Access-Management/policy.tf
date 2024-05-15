@@ -55,7 +55,7 @@ resource "null_resource" "configmap-edit" {
       #!/bin/bash
       rolearn="${aws_iam_role.eks_admin_role.arn}"
       file="${path.module}/maproles.txt"
-      sed -i "\$a \\rolearn: $rolearn" "$file"
+      sed -i "\$a\\ rolearn: $rolearn" "$file"
     EOT
   }
 }
