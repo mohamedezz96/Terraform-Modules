@@ -7,5 +7,5 @@ resource "kubernetes_config_map" "aws-auth" {
     name      = "aws-auth"
     namespace = "kube-system"
   }
-
+  depends_on = [ null_resource.configmap-edit ]
 }
