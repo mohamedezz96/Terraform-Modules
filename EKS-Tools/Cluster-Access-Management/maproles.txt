@@ -7,5 +7,3 @@
 - groups:
   - system:masters
   username: eks-admin
-
-

@@ -53,10 +53,9 @@ resource "null_resource" "configmap-edit" {
   provisioner "local-exec" {
     command = <<-EOT
       #!/bin/bash
-      rolearn="${aws_iam_role.eks_admin_role.arn}"  
-      file="${path.module}/maproles.txt"  
-      sed -i "\$a\rolearn: \$rolearn" $file
-
+      rolearn="${aws_iam_role.eks_admin_role.arn}"
+      file="${path.module}/maproles.txt"
+      sed -i "\$a\\rolearn: $rolearn" "$file"
     EOT
   }
 }
