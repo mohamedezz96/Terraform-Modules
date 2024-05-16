@@ -4,7 +4,7 @@ resource "helm_release" "eks-aws-auth" {
   chart      = "eks-aws-auth-chart"
   namespace  = "kube-system"
   version    = "0.1.0"
-  values = ["${file("${module.path}/eks-aws-auth-chart/values.yaml")}"]
+  values = ["${file("./eks-aws-auth-chart/values.yaml")}"]
 
   set {
     name = "awsAuthConfig.mapRoles[0].rolearn"
