@@ -1,6 +1,6 @@
 resource "helm_release" "eks-aws-auth" {
   name       = "eks-aws-auth"
-  repository = "${path.module}/eks-aws-auth-chart"
+  repository = "${path.module}/"
   chart      = "eks-aws-auth-chart"
   namespace  = "kube-system"
   version    = "0.1.0"
