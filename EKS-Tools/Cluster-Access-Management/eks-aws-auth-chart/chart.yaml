@@ -1,0 +1,8 @@
+apiVersion: v2
+name: eks-aws-auth-chart
+description: A Helm chart for managing AWS authentication in Kubernetes
+version: 0.1.0
+appVersion: 1.0.0
+maintainers:
+  - name: Mohamed Ezz
+    email: mohamed.ahmed.ezzeldeen@gmail.com

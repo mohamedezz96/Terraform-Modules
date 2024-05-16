@@ -1,0 +1,19 @@
+awsAuthConfig:
+  mapRoles:
+    # - rolearn: "arn:aws:iam::111111111111:role/role1"
+    #   username: "system:node:{{EC2PrivateDNSName}}"
+    #   groups:
+    #     - "system:bootstrappers"
+    #     - "system:nodes"
+    # - rolearn: "arn:aws:iam::222222222222:role/role2"
+    #   username: "system:node:{{EC2PrivateDNSName}}"
+    #   groups:
+    #     - "system:bootstrappers"
+    #     - "system:nodes"
+    #     - "my-custom-group"
+    # - rolearn: "arn:aws:iam::333333333333:role/role3"
+    #   username: "system:node:{{EC2PrivateDNSName}}"
+    #   groups:
+    #     - "system:bootstrappers"
+    #     - "system:nodes"
+    #     - "my-other-custom-group"

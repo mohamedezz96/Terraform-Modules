@@ -45,19 +45,5 @@ resource "aws_iam_role_policy_attachment" "eks_admin_policy_attachment" {
   policy_arn = aws_iam_policy.eks_admin_policy.arn
 }
 
-resource "null_resource" "configmap-edit" {
-  triggers = {
-    timestamp = timestamp()
-  }
-
-  provisioner "local-exec" {
-    command = <<-EOT
-      #!/bin/bash
-      rolearn="${aws_iam_role.eks_admin_role.arn}"
-      file="${path.module}/maproles.txt"
-      sed -i "\$a\\ rolearn: $rolearn" "$file"
-    EOT
-  }
-}
 
 
